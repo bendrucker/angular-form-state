@@ -20,5 +20,18 @@
   "bugs": {
     "url": "https://github.com/bendrucker/angular-form-state/issues"
   },
-  "homepage": "https://github.com/bendrucker/angular-form-state"
+  "homepage": "https://github.com/bendrucker/angular-form-state",
+  "devDependencies": {
+    "browserify": "~4.1.10",
+    "browserify-shim": "~3.5.0",
+    "karma": "~0.12.16",
+    "karma-bro": "~0.5.0",
+    "karma-mocha": "~0.1.4",
+    "karma-phantomjs-launcher": "~0.1.4",
+    "mocha": "~1.20.1",
+    "watchify": "~0.10.2"
+  },
+  "browserify-shim": {
+    "angular": "global:angular"
+  }
 }
