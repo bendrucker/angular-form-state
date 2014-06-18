@@ -3,6 +3,7 @@
 require('angular').module('bd.form-state', [])
   .directive('bdSubmit', ['$parse', function ($parse) {
     return {
+      require: 'form',
       compile: function ($element, attributes) {
         var fn = $parse(attributes.bdSubmit);
         return function (scope, element) {
