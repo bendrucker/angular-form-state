@@ -11,40 +11,50 @@ describe('bd.form-state', function () {
 
   describe('bdSubmit', function () {
 
-    var $compile, scope;
+    var $compile, scope, element, controller;
     beforeEach(angular.mock.inject(function (_$compile_, $rootScope) {
-      $compile = _$compile_;
-      scope = $rootScope.$new();
+      $compile   = _$compile_;
+      scope      = $rootScope.$new();
+      element    = $compile('<form bd-submit="submitHandler()" />')(scope);
+      controller = element.controller('bdSubmit');
     }));
 
+    it('attaches submission state to FormController', function () {
+      expect(element.controller('form'))
+        .to.have.a.property('submission', controller);
+    });
+
+    it('starts with clean state', function () {
+      expect(controller).to.contain({
+        succeeded: false,
+        failed: false,
+        attempted: false,
+        attempts: 0,
+        error: null
+      });
+    });
+
     describe('Replicating ngSubmit behavior', function () {
+
+      beforeEach(function () {
+        scope.submitHandler = sinon.spy();
+        scope.$digest();
+      });
 
       // Tests adapted from Angular's own suite
       // https://github.com/angular/angular.js/blob/master/test/ng/directive/ngEventDirsSpec.js#L12-L41
 
       it('should get called on form submit', function() {
-        var element = $compile('<form bd-submit="submitted = true" />')(scope);
-        scope.$digest();
-        expect(scope.submitted).to.be.undefined;
+        expect(scope.submitHandler).to.not.have.been.called;
         element.triggerHandler('submit');
-        expect(scope.submitted).to.equal(true);
+        expect(scope.submitHandler).to.have.been.called;
       });
 
-      it('should expose event on form submit', function () {
-        scope.formSubmission = sinon.spy();
-        var element = $compile('<form bd-submit="formSubmission($event)" />')(scope);
-        scope.$digest();
-        expect(scope.formSubmission).to.not.have.been.called;
+      it('should expose $event on form submit', function () {
+        element = $compile('<form bd-submit="submitHandler($event)" />')(scope);
+        expect(scope.submitHandler).to.not.have.been.called;
         element.triggerHandler('submit');
-        expect(scope.formSubmission).to.have.been.calledWith(sinon.match.has('preventDefault'));
-      });
-
-    });
-
-    describe('Tracking state', function () {
-
-      it('starts with clean state', function () {
-
+        expect(scope.submitHandler).to.have.been.calledWith(sinon.match.has('preventDefault'));
       });
 
     });
