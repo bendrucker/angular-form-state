@@ -1,0 +1,24 @@
+{
+  "name": "angular-form-state",
+  "version": "0.0.0",
+  "description": "Smarter AngularJS forms for reacting to submission states",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start --single-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bendrucker/angular-form-state.git"
+  },
+  "keywords": [
+    "angular",
+    "forms",
+    "directive"
+  ],
+  "author": "Ben Drucker <bvdrucker@gmail.com> (http://www.bendrucker.me/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bendrucker/angular-form-state/issues"
+  },
+  "homepage": "https://github.com/bendrucker/angular-form-state"
+}
