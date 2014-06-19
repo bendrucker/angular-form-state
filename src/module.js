@@ -5,6 +5,7 @@ require('angular').module('bd.form-state', [])
     '$parse',
     '$q',
     require('./bd-submit')
-  ]);
+  ])
+  .directive('submitButton', require('./submit-button.js'));
 
 module.exports = 'bd.form-state';
