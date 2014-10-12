@@ -1,6 +1,5 @@
-test
-components
-.travis.yml
+test/
+components/
+**/.*
 bower.json
 karma.conf.js
-.jshintrc
