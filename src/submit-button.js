@@ -3,6 +3,7 @@
 module.exports = function () {
   return {
     require: '^bdSubmit',
+    restrict: 'A',
     scope: {
       pending: '@'
     },
