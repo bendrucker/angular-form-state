@@ -2,7 +2,7 @@
   "name": "angular-form-state",
   "version": "0.0.1",
   "description": "Smarter AngularJS forms for reacting to submission states",
-  "main": "./src/module.js",
+  "main": "./src",
   "scripts": {
     "test": "karma start --single-run"
   },

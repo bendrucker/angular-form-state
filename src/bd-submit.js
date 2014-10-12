@@ -66,3 +66,5 @@ module.exports = function ($parse, $q) {
     }
   };
 };
+
+module.exports.$inject = ['$parse', '$q'];
