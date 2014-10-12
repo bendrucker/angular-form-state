@@ -16,6 +16,8 @@ angular.module('yourApp', [
 
 ## Usage
 
+### bdSubmit
+
 Replace your `ngSubmit` directives with `bdSubmit`. 
 
 ```html
@@ -31,3 +33,15 @@ An `submission` objection is attached to [`ngFormController`](https://docs.angul
 * **pending** *boolean*: `true` if the expression returned a promise that is still pending (not resolved or rejected)
 * **attempted** *boolean*: `true` if submission has been attempted at least once
 * **attempts** *number*: The number of times that form submission has been attempted. 
+
+```js
+$scope.submit = function () {
+  // return a promise, probably from $http
+};
+```
+```html
+<form bd-submit="submitForm()" name="myForm">
+  <button type="submit">Submit</button>
+  <p ng-show="myForm.submission.pending">Submitting...</p>
+  <p>Form submitted {{myForm.submission.attempts}} times</p>
+</form>
