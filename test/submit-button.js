@@ -18,6 +18,10 @@ module.exports = function () {
     expect(element.text()).to.equal('Submit');
   });
 
+  it('adds type=submit', function () {
+    expect(element.attr('type')).to.equal('submit');
+  });
+
   describe('becoming pending', function () {
 
     beforeEach(function () {

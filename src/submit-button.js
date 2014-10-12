@@ -8,6 +8,9 @@ module.exports = function () {
       pending: '@'
     },
     link: function (scope, element, attributes, controller) {
+      if (!attributes.type) {
+        attributes.$set('type', 'submit');
+      }
       var defaultText = element.text();
       scope.$watch(function () {
         return controller;
