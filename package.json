@@ -1,6 +1,6 @@
 {
   "name": "angular-form-state",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Smarter AngularJS forms for reacting to submission states",
   "main": "./src",
   "scripts": {
@@ -35,7 +35,9 @@
     "sinon-chai": "2"
   },
   "browserify": {
-    "transform": ["browserify-shim"]
+    "transform": [
+      "browserify-shim"
+    ]
   },
   "browserify-shim": {
     "angular": "global:angular"
