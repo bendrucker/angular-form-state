@@ -18,6 +18,7 @@ module.exports = function ($parse, $q) {
           self.pending = true;
           self.attempted = true;
           self.attempts++;
+          self.error = null;
         },
         success: function () {
           self.succeeded = true;
