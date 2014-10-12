@@ -34,6 +34,8 @@ An `submission` objection is attached to [`ngFormController`](https://docs.angul
 * **attempted** *boolean*: `true` if submission has been attempted at least once
 * **attempts** *number*: The number of times that form submission has been attempted. 
 
+Form submission can be reattempted an unlimited number of times. If you wish to prevent users from resubmitting a form that was successfully sent, for example, you should implement that yourself. Submission state (`succeeded`, `failed`, `error`, `pending`) is reset on every new submission attempt and will always reflect the active/most recent submission.
+
 ```js
 $scope.submit = function () {
   // return a promise, probably from $http
@@ -45,3 +47,23 @@ $scope.submit = function () {
   <p ng-show="myForm.submission.pending">Submitting...</p>
   <p>Form submitted {{myForm.submission.attempts}} times</p>
 </form>
+```
+
+### submitButton
+`submitButton` can be combined with `bdSubmit` to create a simple text button that:
+
+* Disables itself and changes its text to a customizable message while form submission is pending
+* Adds classes that track form submission
+* Re-enables itself and restores its text when form submission completes (succeeds or fails)
+
+```html
+<form bd-submit="submitForm()" name="myForm">
+  <button submit-button pending="Submitting...">Submit</button>
+</form>
+```
+
+The directive will automatically add `type="submit"` to the element. The following classes are toggled on the element during the form submission lifecycle:
+
+* submit-pending
+* submit-suceeded
+* submit-failed
