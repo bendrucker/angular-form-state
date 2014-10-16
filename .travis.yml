@@ -11,4 +11,5 @@ deploy:
     secure: aoXEqcE737tGKk+KQa62RgHSSP0XMWJ4B6dmA6EhqOf7qnx1xp6Lf4TDtmwfivkZjbFORMEnW19ti10CZQjx+khqJeb7eV3FYiweowPrcnvBtZuq3NwHhEvUvXpQaE4sOlwFi0bCcpNWmTgUuvuxg3novFaF/XvvGHc7PPFAElY=
   on:
     tags: true
+    all_branches: true
     repo: bendrucker/angular-form-state
