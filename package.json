@@ -4,7 +4,8 @@
   "description": "Smarter AngularJS forms for reacting to submission states",
   "main": "./src",
   "scripts": {
-    "test": "karma start --single-run"
+    "test": "karma start --single-run",
+    "release": "release release"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,8 @@
   },
   "homepage": "https://github.com/bendrucker/angular-form-state",
   "devDependencies": {
+    "browserify": "6",
+    "browserify-bower-release": "2",
     "browserify-shim": "3",
     "chai": "1",
     "karma": "0.12",

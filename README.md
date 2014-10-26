@@ -3,14 +3,25 @@ angular-form-state [![Build Status](https://travis-ci.org/bendrucker/angular-for
 
 Smarter AngularJS forms for reacting to submission states
 
-## Setup
+## Install
 
 ```bash
-$ npm install --save angular-form-state
+# npm
+$ npm install angular-form-state
+# bower
+$ bower install angular-form-state
 ```
+
+## Setup
+
 ```js
-angular.module('yourApp', [
+// node module exports the string 'angular-form-state' for convenience
+angular.module('myApp', [
   require('angular-form-state')
+]);
+// otherwise, include the code first then the module name
+angular.module('myApp', [
+  'angular-form-state'
 ]);
 ```
 
