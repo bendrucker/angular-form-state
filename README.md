@@ -37,7 +37,7 @@ Replace your `ngSubmit` directives with `bdSubmit`.
 
 In addition to standard `ngSubmit` behavior, the expression passed to `bdSubmit` can return a promise. 
 
-An `submission` objection is attached to [`ngFormController`](https://docs.angularjs.org/api/ng/type/form.FormController) containing:
+A `submission` objection is attached to [`ngFormController`](https://docs.angularjs.org/api/ng/type/form.FormController) containing:
 * **succeeded** *boolean*: `true` if the `bdSubmit` expression returns a value or fulfilled promise
 * **failed** *boolean*: `true` if the expression returns a rejected promise
 * **error** *object*: The `Error` from a rejected promise returned by the `bdSubmit` expression. Otherwise `null`.
