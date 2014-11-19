@@ -51,25 +51,19 @@ module.exports = function () {
   });
 
   it('succeeds when the expression returns a fulfilled promise', function () {
-    var deferred = $q.defer();
-    scope.submitHandler.returns(deferred.promise);
+    scope.submitHandler.resolves();
     sinon.spy(controller.set, 'success');
     element.triggerHandler('submit');
-    expect(controller.set.success).to.not.have.been.called;
-    $timeout.flush();
-    deferred.resolve();
     expect(controller.set.success).to.not.have.been.called;
     $timeout.flush();
     expect(controller.set.success).to.have.been.called;
   });
 
   it('fails when the expression returns a rejected promise', function () {
-    var deferred = $q.defer();
-    scope.submitHandler.returns(deferred.promise);
+    var err = new Error();
+    scope.submitHandler.rejects(err);
     sinon.spy(controller.set, 'failure');
     element.triggerHandler('submit');
-    var err = new Error();
-    deferred.reject(err);
     $timeout.flush();
     expect(controller.set.failure).to.have.been.calledWith(err);
     expect(controller.error).to.equal(err);
