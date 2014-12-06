@@ -8,6 +8,9 @@ var sinonAsPromised = require('sinon-as-promised');
 describe('bd.form-state', function () {
 
   beforeEach(angular.mock.module(require('../')));
+  beforeEach(angular.mock.module(function ($exceptionHandlerProvider) {
+    $exceptionHandlerProvider.mode('log');
+  }));
   beforeEach(angular.mock.inject(function ($q, $rootScope) {
     sinonAsPromised($q);
     sinonAsPromised.setScheduler(function (fn) {
