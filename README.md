@@ -25,9 +25,9 @@ angular.module('myApp', [
 ]);
 ```
 
-## Usage
+## API
 
-### bdSubmit
+### `bdSubmit`
 
 Replace your `ngSubmit` directives with `bdSubmit`. 
 
@@ -62,7 +62,10 @@ $scope.submit = function () {
 </form>
 ```
 
-### submitButton
+<hr>
+
+### `submitButton`
+
 `submitButton` can be combined with `bdSubmit` to create a simple text button that:
 
 * Disables itself and changes its text to a customizable message while form submission is pending
