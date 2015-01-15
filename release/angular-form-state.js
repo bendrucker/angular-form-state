@@ -4,7 +4,7 @@
 
 var angular = (typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null);
 
-module.exports = function ($parse, $q) {
+module.exports = function ($parse, $q, $exceptionHandler) {
   return {
     require: ['form', 'bdSubmit'],
     controller: function () {
@@ -35,6 +35,7 @@ module.exports = function ($parse, $q) {
           self.failed = true;
           self.pending = false;
           self.error = err;
+          $exceptionHandler(err);
         }
       };
     },
@@ -71,7 +72,7 @@ module.exports = function ($parse, $q) {
   };
 };
 
-module.exports.$inject = ['$parse', '$q'];
+module.exports.$inject = ['$parse', '$q', '$exceptionHandler'];
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
@@ -123,11 +124,11 @@ module.exports = function () {
 (function (global){
 'use strict';
 
-(typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null).module('bd.form-state', [])
+module.exports = (typeof window !== "undefined" ? window.angular : typeof global !== "undefined" ? global.angular : null)
+  .module('bd.form-state', [])
   .directive('bdSubmit', require('./bd-submit'))
-  .directive('submitButton', require('./submit-button.js'));
-
-module.exports = 'bd.form-state';
+  .directive('submitButton', require('./submit-button.js'))
+  .name;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./bd-submit":1,"./submit-button.js":2}]},{},[3])(3)
