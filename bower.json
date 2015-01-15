@@ -1,12 +1,12 @@
 {
   "name": "angular-form-state",
-  "version": "1.0.3",
+  "version": "1.1.1",
   "homepage": "https://github.com/bendrucker/angular-form-state",
   "authors": [
     "Ben Drucker <bvdrucker@gmail.com>"
   ],
   "description": "Smarter AngularJS forms for reacting to submission states",
-  "main": "index.js",
+  "main": "./release/angular-form-state.js",
   "moduleType": [
     "node"
   ],
@@ -22,11 +22,5 @@
     "components",
     "test",
     "tests"
-  ],
-  "devDependencies": {
-    "angular-mocks": "~1.2.18"
-  },
-  "dependencies": {
-    "angular": "~1.2.18"
-  }
+  ]
 }

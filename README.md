@@ -25,9 +25,9 @@ angular.module('myApp', [
 ]);
 ```
 
-## Usage
+## API
 
-### bdSubmit
+### `bdSubmit`
 
 Replace your `ngSubmit` directives with `bdSubmit`. 
 
@@ -47,6 +47,8 @@ A `submission` objection is attached to [`ngFormController`](https://docs.angula
 
 Form submission can be reattempted an unlimited number of times. If you wish to prevent users from resubmitting a form that was successfully sent, for example, you should implement that yourself. Submission state (`succeeded`, `failed`, `error`, `pending`) is reset on every new submission attempt and will always reflect the active/most recent submission.
 
+When the `bdSubmit` expression returns a rejected promise, the error is passed to [`$exceptionHandler`](https://docs.angularjs.org/api/ng/service/$exceptionHandler) which by default logs the error using `console.error`. 
+
 ```js
 $scope.submit = function () {
   // return a promise, probably from $http
@@ -60,7 +62,10 @@ $scope.submit = function () {
 </form>
 ```
 
-### submitButton
+<hr>
+
+### `submitButton`
+
 `submitButton` can be combined with `bdSubmit` to create a simple text button that:
 
 * Disables itself and changes its text to a customizable message while form submission is pending

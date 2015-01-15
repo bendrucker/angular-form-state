@@ -2,7 +2,7 @@
 
 var angular = require('angular');
 
-module.exports = function ($parse, $q) {
+module.exports = function ($parse, $q, $exceptionHandler) {
   return {
     require: ['form', 'bdSubmit'],
     controller: function () {
@@ -33,6 +33,7 @@ module.exports = function ($parse, $q) {
           self.failed = true;
           self.pending = false;
           self.error = err;
+          $exceptionHandler(err);
         }
       };
     },
@@ -69,4 +70,4 @@ module.exports = function ($parse, $q) {
   };
 };
 
-module.exports.$inject = ['$parse', '$q'];
+module.exports.$inject = ['$parse', '$q', '$exceptionHandler'];

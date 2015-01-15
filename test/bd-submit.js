@@ -4,14 +4,15 @@ var angular = require('angular');
 
 module.exports = function () {
 
-  var $compile, $timeout, $q, scope, element, controller;
+  var $compile, $timeout, $q, $exceptionHandler, scope, element, controller;
   beforeEach(angular.mock.inject(function ($injector) {
-    $compile   = $injector.get('$compile');
-    $timeout   = $injector.get('$timeout');
-    $q         = $injector.get('$q');
-    scope      = $injector.get('$rootScope').$new();
-    element    = $compile('<form bd-submit="submitHandler()" />')(scope);
-    controller = element.controller('bdSubmit');
+    $compile          = $injector.get('$compile');
+    $timeout          = $injector.get('$timeout');
+    $q                = $injector.get('$q');
+    $exceptionHandler = $injector.get('$exceptionHandler');
+    scope             = $injector.get('$rootScope').$new();
+    element           = $compile('<form bd-submit="submitHandler()" />')(scope);
+    controller        = element.controller('bdSubmit');
   }));
 
   beforeEach(function () {
@@ -51,28 +52,23 @@ module.exports = function () {
   });
 
   it('succeeds when the expression returns a fulfilled promise', function () {
-    var deferred = $q.defer();
-    scope.submitHandler.returns(deferred.promise);
+    scope.submitHandler.resolves();
     sinon.spy(controller.set, 'success');
     element.triggerHandler('submit');
-    expect(controller.set.success).to.not.have.been.called;
-    $timeout.flush();
-    deferred.resolve();
     expect(controller.set.success).to.not.have.been.called;
     $timeout.flush();
     expect(controller.set.success).to.have.been.called;
   });
 
   it('fails when the expression returns a rejected promise', function () {
-    var deferred = $q.defer();
-    scope.submitHandler.returns(deferred.promise);
+    var err = new Error();
+    scope.submitHandler.rejects(err);
     sinon.spy(controller.set, 'failure');
     element.triggerHandler('submit');
-    var err = new Error();
-    deferred.reject(err);
     $timeout.flush();
     expect(controller.set.failure).to.have.been.calledWith(err);
     expect(controller.error).to.equal(err);
+    expect($exceptionHandler.errors).to.deep.equal([err]);
   });
 
   describe('Replicating ngSubmit behavior', function () {
