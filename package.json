@@ -33,7 +33,7 @@
     "karma-phantomjs-launcher": "0.1",
     "mocha": "1",
     "sinon": "1",
-    "sinon-as-promised": "~1.4.1",
+    "sinon-as-promised": "~2.0.3",
     "sinon-chai": "2"
   },
   "browserify": {
