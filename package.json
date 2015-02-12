@@ -45,7 +45,6 @@
     "angular": "global:angular"
   },
   "dependencies": {
-    "angular": "~1.3.3",
-    "publicist": "git://github.com/bendrucker/publicist#v3"
+    "angular": "~1.3.3"
   }
 }
