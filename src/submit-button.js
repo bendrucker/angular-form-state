@@ -1,43 +1,26 @@
 'use strict';
 
-module.exports = function () {
+module.exports = function ($interpolate, $parse) {
   return {
     require: '^bdSubmit',
     restrict: 'A',
-    scope: {
-      pending: '@'
-    },
-    link: function (scope, element, attributes, controller) {
+    compile: function (element, attributes) {
       if (!attributes.type) {
         attributes.$set('type', 'submit');
       }
-      var defaultText = element.text();
-      scope.$watch(function () {
-        return controller;
-      }, function (current, previous) {
-
-        if (!previous.pending && current.pending) {
-          element.text(scope.pending);
-          attributes.$set('disabled', true);
-          element.addClass('submit-pending');
-        }
-        if (previous.pending && !current.pending) {
-          element.text(defaultText);
-          attributes.$set('disabled', false);
-          element.removeClass('submit-pending');
-        }
-
-        if (!previous.succeeded && current.succeeded) {
-          element.addClass('submit-succeeded');
-        }
-
-        if (!previous.failed && current.failed) {
-          element.addClass('submit-failed');
-        }
-        if (previous.failed && !current.failed) {
-          element.removeClass('submit-failed');
-        }
-      }, true);
+      return function (scope, element, attributes, controller) {
+        var original = element.text();
+        scope.submission = controller;
+        scope.$watch('submission.pending', function (pending) {
+          var disabled = pending;
+          if (!disabled && attributes.ngDisabled) {
+            disabled = disabled || $parse(attributes.ngDisabled)(scope);
+          }
+          attributes.$set('disabled', disabled);
+          element.text($interpolate(pending ? attributes.pending : original)(scope));
+        });
+      };
     }
   };
 };
+module.exports.$inject = ['$interpolate', '$parse'];

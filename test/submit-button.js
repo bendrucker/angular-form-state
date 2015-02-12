@@ -4,18 +4,19 @@ var angular = require('angular');
 
 module.exports = function () {
 
-  var $compile, $timeout, scope, element, controller;
+  var $compile, $timeout, scope, element, submission;
   beforeEach(angular.mock.inject(function ($injector) {
     $compile   = $injector.get('$compile');
     scope      = $injector.get('$rootScope').$new();
     $timeout   = $injector.get('$timeout');
-    element    = $compile('<form bd-submit><button submit-button pending="Submitting">Submit</button></form>')(scope).children();
-    controller = element.controller('bdSubmit');
+    element    = $compile('<form bd-submit><button submit-button ng-disabled="disabled" pending="Submitting {{name}}">Submit {{name}}</button></form>')(scope).find('button');
+    submission = element.controller('bdSubmit');
+    scope.name = 'Form';
     scope.$digest();
   }));
 
   it('uses the initial text', function () {
-    expect(element.text()).to.equal('Submit');
+    expect(element.text()).to.equal('Submit Form');
   });
 
   it('adds type=submit', function () {
@@ -25,20 +26,16 @@ module.exports = function () {
   describe('becoming pending', function () {
 
     beforeEach(function () {
-      controller.pending = true;
+      submission.setPending();
       scope.$digest();
     });
 
     it('changes the text', function () {
-      expect(element.text()).to.equal('Submitting');
-    });
-
-    it('adds a pending class', function () {
-      expect(element.hasClass('submit-pending')).to.be.true;
+      expect(element.text()).to.equal('Submitting Form');
     });
 
     it('disables the button', function () {
-      expect(element.attr('disabled')).to.be.ok;
+      expect(element.attr('disabled')).to.equal('disabled');
     });
 
   });
@@ -46,47 +43,28 @@ module.exports = function () {
   describe('leaving pending', function () {
 
     beforeEach(function () {
-      controller.pending = true;
-      scope.$digest();
-      controller.pending = false;
+      submission.setSuccess();
       scope.$digest();
     });
 
     it('resets the text', function () {
-      expect(element.text()).to.equal('Submit');
-    });
-
-    it('removes the pending class', function () {
-      expect(element.hasClass('submit-pending')).to.be.false;
+      expect(element.text()).to.equal('Submit Form');
     });
 
     it('enables the button', function () {
-      expect(element.attr('disabled')).to.not.be.ok;
+      expect(element.attr('disabled')).to.equal(undefined);
     });
 
-  });
+    it('does not enable the button with ngDisabled=true', function () {
+      submission.setPending();
+      scope.$digest();
+      scope.disabled = true;
+      scope.$digest();
+      submission.setSuccess();
+      scope.$digest();
+      expect(element.attr('disabled')).to.equal('disabled');
+    });
 
-  it('adds a success class', function () {
-    controller.succeeded = true;
-    scope.$digest();
-    expect(element.hasClass('submit-succeeded')).to.be.true;
-  });
-
-  it('toggles a failure class', function () {
-    controller.failed = true;
-    scope.$digest();
-    expect(element.hasClass('submit-failed')).to.be.true;
-    controller.failed = false;
-    scope.$digest();
-    expect(element.hasClass('submit-failed')).to.be.false;
-  });
-
-  it('reverts the text when the form finishes', function () {
-    controller.pending = true;
-    scope.$digest();
-    controller.pending = false;
-    scope.$digest();
-    expect(element.text()).to.equal('Submit');
   });
 
 };
