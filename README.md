@@ -69,7 +69,6 @@ $scope.submit = function () {
 `submitButton` can be combined with `bdSubmit` to create a simple text button that:
 
 * Disables itself and changes its text to a customizable message while form submission is pending
-* Adds classes that track form submission
 * Re-enables itself and restores its text when form submission completes (succeeds or fails)
 
 ```html
@@ -78,8 +77,4 @@ $scope.submit = function () {
 </form>
 ```
 
-The directive will automatically add `type="submit"` to the element. The following classes are toggled on the element during the form submission lifecycle:
-
-* submit-pending
-* submit-suceeded
-* submit-failed
+The directive will automatically add `type="submit"` to the element.
