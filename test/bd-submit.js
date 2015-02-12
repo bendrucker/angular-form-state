@@ -36,37 +36,37 @@ module.exports = function () {
   });
 
   it('tracks attempts', function() {
-    sinon.spy(controller.set, 'pending');
+    sinon.spy(controller, 'setPending');
     element.triggerHandler('submit');
-    expect(controller.set.pending).to.have.been.called;
+    expect(controller.setPending).to.have.been.called;
     expect(controller.pending).to.be.true;
     expect(controller.attempts).to.equal(1);
   });
 
   it('succeeds when the expression does not return a promise', function () {
-    sinon.spy(controller.set, 'success');
+    sinon.spy(controller, 'setSuccess');
     element.triggerHandler('submit');
-    expect(controller.set.success).to.not.have.been.called;
+    expect(controller.setSuccess).to.not.have.been.called;
     $timeout.flush();
-    expect(controller.set.success).to.have.been.called;
+    expect(controller.setSuccess).to.have.been.called;
   });
 
   it('succeeds when the expression returns a fulfilled promise', function () {
     scope.submitHandler.resolves();
-    sinon.spy(controller.set, 'success');
+    sinon.spy(controller, 'setSuccess');
     element.triggerHandler('submit');
-    expect(controller.set.success).to.not.have.been.called;
+    expect(controller.setSuccess).to.not.have.been.called;
     $timeout.flush();
-    expect(controller.set.success).to.have.been.called;
+    expect(controller.setSuccess).to.have.been.called;
   });
 
   it('fails when the expression returns a rejected promise', function () {
     var err = new Error();
     scope.submitHandler.rejects(err);
-    sinon.spy(controller.set, 'failure');
+    sinon.spy(controller, 'setFailure');
     element.triggerHandler('submit');
     $timeout.flush();
-    expect(controller.set.failure).to.have.been.calledWith(err);
+    expect(controller.setFailure).to.have.been.calledWith(err);
     expect(controller.error).to.equal(err);
     expect($exceptionHandler.errors).to.deep.equal([err]);
   });
@@ -76,13 +76,13 @@ module.exports = function () {
     // Tests adapted from Angular's own suite
     // https://github.com/angular/angular.js/blob/master/test/ng/directive/ngEventDirsSpec.js#L12-L41
 
-    it('should get called on form submit', function() {
+    it('is called on form submit', function() {
       expect(scope.submitHandler).to.not.have.been.called;
       element.triggerHandler('submit');
       expect(scope.submitHandler).to.have.been.called;
     });
 
-    it('should expose $event on form submit', function () {
+    it('exposes $event on form submit', function () {
       element = $compile('<form bd-submit="submitHandler($event)" />')(scope);
       expect(scope.submitHandler).to.not.have.been.called;
       element.triggerHandler('submit');
