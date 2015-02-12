@@ -10,11 +10,12 @@ module.exports = function ($interpolate, $parse) {
       }
       return function (scope, element, attributes, controller) {
         var original = element.text();
-        scope.submission = controller;
         function ngDisabled () {
           return attributes.ngDisabled && !!$parse(attributes.ngDisabled)(scope);
         }
-        scope.$watch('submission.pending', function (pending) {
+        scope.$watch(function () {
+          return controller.pending;
+        }, function (pending) {
           attributes.$set('disabled', pending || ngDisabled());
           element.text($interpolate(pending ? attributes.pending : original)(scope));
         });
