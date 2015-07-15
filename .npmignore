@@ -1,6 +1,0 @@
-test/
-components/
-release/
-**/.*
-bower.json
-karma.conf.js
