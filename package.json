@@ -40,5 +40,8 @@
     "sinon-as-promised": "~4.0.0",
     "sinon-chai": "~2.8.0",
     "standard": "~4.5.4"
-  }
+  },
+  "files": [
+    "src/*.js"
+  ]
 }
