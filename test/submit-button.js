@@ -3,6 +3,7 @@
 /*global describe beforeEach it*/
 
 var angular = require('angular')
+require('angular-mocks/ngMock')
 var expect = require('chai').expect
 
 module.exports = function () {

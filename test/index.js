@@ -3,6 +3,7 @@
 /*global describe beforeEach*/
 
 var angular = require('angular')
+require('angular-mocks/ngMock')
 
 describe('bd.form-state', function () {
   beforeEach(angular.mock.module(require('../')))

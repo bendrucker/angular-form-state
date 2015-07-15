@@ -4,7 +4,7 @@
   "description": "Smarter AngularJS forms for reacting to submission states",
   "main": "./src",
   "scripts": {
-    "test": "standard && karma start --single-run",
+    "test": "standard && zuul --phantom -- test/index.js",
     "release": "release release"
   },
   "repository": {
@@ -28,18 +28,14 @@
   "devDependencies": {
     "angular": "~1.4.3",
     "angular-mocks": "~1.4.3",
-    "browserify-shim": "3",
     "chai": "~3.0.0",
-    "karma": "0.12",
-    "karma-browserify": "^1.0.0",
-    "karma-cli": "0.0.4",
-    "karma-mocha": "0.1",
-    "karma-phantomjs-launcher": "0.1",
-    "mocha": "1",
+    "mocha": "~2.2.5",
+    "phantomjs": "~1.9.17",
     "sinon": "~1.15.4",
     "sinon-as-promised": "~4.0.0",
     "sinon-chai": "~2.8.0",
-    "standard": "~4.5.4"
+    "standard": "~4.5.4",
+    "zuul": "~3.2.0"
   },
   "files": [
     "src/*.js"
