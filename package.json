@@ -43,5 +43,10 @@
   },
   "files": [
     "src/*.js"
-  ]
+  ],
+  "standard": {
+    "ignore": [
+      "release/"
+    ]
+  }
 }
