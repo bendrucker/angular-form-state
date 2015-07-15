@@ -17,7 +17,8 @@ module.exports = function ($interpolate, $parse) {
           return controller.pending
         }, function (pending) {
           attributes.$set('disabled', pending || ngDisabled())
-          element.text($interpolate(pending ? attributes.pending : original)(scope))
+          var pendingText = attributes.pending
+          element.text($interpolate(pending && pendingText != null ? pendingText : original)(scope))
         })
       }
     }

@@ -35,6 +35,14 @@ module.exports = function () {
       expect(element.text()).to.equal('Submitting Form')
     })
 
+    it('leaves the original text when no replacement is supplied', function () {
+      element = $compile('<form bd-submit><button submit-button>Submit</button></form>')(scope).find('button')
+      submission = element.controller('bdSubmit')
+      submission.setPending()
+      scope.$digest()
+      expect(element.text()).to.equal('Submit')
+    })
+
     it('disables the button', function () {
       expect(element.attr('disabled')).to.equal('disabled')
     })
