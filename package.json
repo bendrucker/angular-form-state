@@ -4,7 +4,7 @@
   "description": "Smarter AngularJS forms for reacting to submission states",
   "main": "./src",
   "scripts": {
-    "test": "karma start --single-run",
+    "test": "standard && karma start --single-run",
     "release": "release release"
   },
   "repository": {
@@ -34,7 +34,8 @@
     "mocha": "1",
     "sinon": "1",
     "sinon-as-promised": "~2.0.3",
-    "sinon-chai": "2"
+    "sinon-chai": "2",
+    "standard": "~4.5.4"
   },
   "browserify": {
     "transform": [

@@ -1,70 +1,69 @@
-'use strict';
+'use strict'
 
-var angular = require('angular');
+/*global describe beforeEach it*/
+
+var angular = require('angular')
+var expect = require('chai').expect
 
 module.exports = function () {
-
-  var $compile, $timeout, scope, element, submission;
+  var $compile, scope, element, submission
   beforeEach(angular.mock.inject(function ($injector) {
-    $compile   = $injector.get('$compile');
-    scope      = $injector.get('$rootScope').$new();
-    $timeout   = $injector.get('$timeout');
-    element    = $compile('<form bd-submit><button submit-button ng-disabled="disabled" pending="Submitting {{name}}">Submit {{name}}</button></form>')(scope).find('button');
-    submission = element.controller('bdSubmit');
-    scope.name = 'Form';
-    scope.$digest();
-  }));
+    $compile = $injector.get('$compile')
+    scope = $injector.get('$rootScope').$new()
+    element = $compile('<form bd-submit><button submit-button ng-disabled="disabled" pending="Submitting {{name}}">Submit {{name}}</button></form>')(scope).find('button')
+    submission = element.controller('bdSubmit')
+    scope.name = 'Form'
+    scope.$digest()
+  }))
 
   it('uses the initial text', function () {
-    expect(element.text()).to.equal('Submit Form');
-  });
+    expect(element.text()).to.equal('Submit Form')
+  })
 
   it('adds type=submit', function () {
-    expect(element.attr('type')).to.equal('submit');
-  });
+    expect(element.attr('type')).to.equal('submit')
+  })
 
   describe('becoming pending', function () {
-
     beforeEach(function () {
-      submission.setPending();
-      scope.$digest();
-    });
+      submission.setPending()
+      scope.$digest()
+    })
 
     it('changes the text', function () {
-      expect(element.text()).to.equal('Submitting Form');
-    });
+      expect(element.text()).to.equal('Submitting Form')
+    })
 
     it('disables the button', function () {
-      expect(element.attr('disabled')).to.equal('disabled');
-    });
+      expect(element.attr('disabled')).to.equal('disabled')
+    })
 
-  });
+  })
 
   describe('leaving pending', function () {
-
     beforeEach(function () {
-      submission.setSuccess();
-      scope.$digest();
-    });
+      submission.setSuccess()
+      scope.$digest()
+    })
 
     it('resets the text', function () {
-      expect(element.text()).to.equal('Submit Form');
-    });
+      expect(element.text()).to.equal('Submit Form')
+    })
 
     it('enables the button', function () {
-      expect(element.attr('disabled')).to.equal(undefined);
-    });
+      expect(element.attr('disabled')).to.equal(undefined)
+    })
 
     it('does not enable the button with ngDisabled=true', function () {
-      submission.setPending();
-      scope.$digest();
-      scope.disabled = true;
-      scope.$digest();
-      submission.setSuccess();
-      scope.$digest();
-      expect(element.attr('disabled')).to.equal('disabled');
-    });
+      submission.setPending()
+      scope.$digest()
+      scope.disabled = true
+      scope.$digest()
+      submission.setSuccess()
+      scope.$digest()
+      expect(element.attr('disabled')).to.equal('disabled')
+    })
 
-  });
+  })
 
-};
+}
