@@ -21,6 +21,12 @@ module.exports = function () {
     expect(element.text()).to.equal('Submit Form')
   })
 
+  it('handles model changes in the initial text', function () {
+    scope.name = 'My Form'
+    scope.$digest()
+    expect(element.text()).to.equal('Submit My Form')
+  })
+
   it('adds type=submit', function () {
     expect(element.attr('type')).to.equal('submit')
   })

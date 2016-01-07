@@ -10,16 +10,23 @@ module.exports = function ($interpolate, $parse) {
       }
       return function (scope, element, attributes, controller) {
         var original = element.text()
+
+        return scope.$watch(isPending, onChange)
+
+        function isPending () {
+          return controller.pending
+        }
+
         function ngDisabled () {
           return attributes.ngDisabled && !!$parse(attributes.ngDisabled)(scope)
         }
-        scope.$watch(function () {
-          return controller.pending
-        }, function (pending) {
+
+        function onChange (pending, previous) {
+          if (pending === previous) return
           attributes.$set('disabled', pending || ngDisabled())
           var pendingText = attributes.pending
           element.text($interpolate(pending && pendingText != null ? pendingText : original)(scope))
-        })
+        }
       }
     }
   }
