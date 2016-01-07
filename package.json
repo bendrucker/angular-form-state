@@ -1,52 +1,52 @@
 {
-  "name": "angular-form-state",
-  "version": "2.0.1",
-  "description": "Smarter AngularJS forms for reacting to submission states",
-  "main": "./src",
-  "scripts": {
-    "test": "standard && zuul --phantom -- test/index.js",
-    "umd": "EXPOSIFY_CONFIG='{\"angular\": \"angular\"}' browserify -e . -s angularFormState -t exposify -p derequire/plugin > ./release/angular-form-state.js",
-    "preversion": "npm run umd && git add -A release/* && git commit -m 'UMD Build'"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bendrucker/angular-form-state.git"
-  },
-  "keywords": [
-    "angular",
-    "forms",
-    "directive"
-  ],
-  "author": "Ben Drucker <bvdrucker@gmail.com> (http://www.bendrucker.me/)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/bendrucker/angular-form-state/issues"
-  },
-  "homepage": "https://github.com/bendrucker/angular-form-state",
-  "peerDependencies": {
-    "angular": ">= 1.3 <= 1.5"
-  },
-  "devDependencies": {
-    "angular": "~1.4.3",
-    "angular-mocks": "~1.4.3",
-    "browserify": "~10.2.6",
-    "chai": "~3.0.0",
-    "derequire": "~2.0.0",
-    "exposify": "~0.4.3",
-    "mocha": "~2.2.5",
-    "phantomjs": "~1.9.17",
-    "sinon": "~1.15.4",
-    "sinon-as-promised": "~4.0.0",
-    "sinon-chai": "~2.8.0",
-    "standard": "~4.5.4",
-    "zuul": "~3.2.0"
-  },
-  "files": [
-    "src/*.js"
-  ],
-  "standard": {
-    "ignore": [
-      "release/"
-    ]
-  }
+	"name": "angular-form-state",
+	"version": "2.0.1",
+	"description": "Smarter AngularJS forms for reacting to submission states",
+	"main": "./src",
+	"scripts": {
+		"test": "standard && zuul --phantom -- test/index.js",
+		"umd": "EXPOSIFY_CONFIG='{\"angular\": \"angular\"}' browserify -e . -s angularFormState -t exposify -p derequire/plugin > ./release/angular-form-state.js",
+		"preversion": "npm run umd && git add release/*.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/bendrucker/angular-form-state.git"
+	},
+	"keywords": [
+		"angular",
+		"forms",
+		"directive"
+	],
+	"author": "Ben Drucker <bvdrucker@gmail.com> (http://www.bendrucker.me/)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/bendrucker/angular-form-state/issues"
+	},
+	"homepage": "https://github.com/bendrucker/angular-form-state",
+	"peerDependencies": {
+		"angular": ">= 1.3 <= 1.5"
+	},
+	"devDependencies": {
+		"angular": "~1.4.3",
+		"angular-mocks": "~1.4.3",
+		"browserify": "~10.2.6",
+		"chai": "~3.0.0",
+		"derequire": "~2.0.0",
+		"exposify": "~0.4.3",
+		"mocha": "~2.2.5",
+		"phantomjs": "~1.9.17",
+		"sinon": "~1.15.4",
+		"sinon-as-promised": "~4.0.0",
+		"sinon-chai": "~2.8.0",
+		"standard": "~4.5.4",
+		"zuul": "~3.2.0"
+	},
+	"files": [
+		"src/*.js"
+	],
+	"standard": {
+		"ignore": [
+			"release/"
+		]
+	}
 }
