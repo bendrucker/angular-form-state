@@ -31,6 +31,17 @@ module.exports = function () {
     expect(element.attr('type')).to.equal('submit')
   })
 
+  describe('model value changes', function () {
+    beforeEach(function () {
+      scope.name = 'MyAwesomeForm'
+      scope.$digest()
+    })
+
+    it('gets the changed text when the model changes', function () {
+      expect(element.text()).to.equal('Submit MyAwesomeForm')
+    })
+  })
+
   describe('becoming pending', function () {
     beforeEach(function () {
       submission.setPending()
