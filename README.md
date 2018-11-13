@@ -1,4 +1,4 @@
-angular-form-state [![Build Status](https://travis-ci.org/bendrucker/angular-form-state.svg?branch=master)](https://travis-ci.org/bendrucker/angular-form-state)
+angular-form-state [![Build Status](https://travis-ci.org/bendrucker/angular-form-state.svg?branch=master)](https://travis-ci.org/bendrucker/angular-form-state) [![Greenkeeper badge](https://badges.greenkeeper.io/bendrucker/angular-form-state.svg)](https://greenkeeper.io/)
 ==================
 
 Smarter AngularJS forms for reacting to submission states
